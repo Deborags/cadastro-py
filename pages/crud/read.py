@@ -1,5 +1,6 @@
 import streamlit as st
 import controllers.clienteController as clienteController
+# import pages.crud.create as createCliente
 
 
 def listarClientes():
@@ -23,9 +24,8 @@ def listarClientes():
             'Alterar', 'btnAlterar' + str(item.id))
         if on_click_excluir:
             clienteController.excluir(item.id)
-            st.experimental_rerun()
-    #     if on_click_alterar:
-    #         st.query_params["item.id"]   # **********
-    #         st.experimental_rerun()
-    # # else:
-    #     createCliente.cadastrar()
+            st.rerun()
+
+        if on_click_alterar:
+            st.query_params.id = [item.id]
+      
