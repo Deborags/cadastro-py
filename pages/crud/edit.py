@@ -1,16 +1,15 @@
 import streamlit as st
 import controllers.clienteController as clienteController
 import models.Clientes as Clientes
-import pages.crud.edit as editCliente
 
 
-def cadastrar():
+def alterar():
     idAlteracao = st.query_params
     idAlteracao = idAlteracao.get("id")
-    if idAlteracao is None:
-        st.write(idAlteracao)
-        st.title("Tela de cadastro")
+    if idAlteracao is not None:
+        st.query_params.clear()
         with st.form(key="include_cliente"):
+            st.text("Alterando cliente")
             input_name = st.text_input(label="Nome:")
             input_idade = st.number_input(label="Idade", format="%d", step=1)
             input_ocupation = st.selectbox(
@@ -22,6 +21,3 @@ def cadastrar():
                 clienteController.incluir(Clientes.Clientes(
                     None, input_name, input_idade, input_ocupation))
                 st.success("Cliente incluído com sucesso!")
-
-    else:
-        editCliente.alterar()

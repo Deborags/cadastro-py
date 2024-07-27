@@ -1,5 +1,5 @@
 import streamlit as st
-import pages.crud.create as createcliente
+import pages.crud.create as createCliente
 import pages.crud.read as readCliente
 
 st.sidebar.title("Menu")
@@ -12,7 +12,8 @@ if page_cliente == "Home":
             "interagir com o nosso projeto")
 
 if page_cliente == "Incluir":
-    createcliente.cadastrar()
+    createCliente.cadastrar()
 
 if page_cliente == "Consultar":
+    st.query_params.clear()
     readCliente.listarClientes()
