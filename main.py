@@ -8,7 +8,7 @@ page_cliente = st.sidebar.selectbox("Escolha uma opção abaixo:", [
 
 if page_cliente == "Home":
     st.title("Bem vindo")
-    st.text("Olá, tudo bem? \n Selecione alguma opção no menu ao lado para"
+    st.text("Olá, tudo bem? \nSelecione alguma opção no menu ao lado para "
             "interagir com o nosso projeto")
 
 if page_cliente == "Incluir":

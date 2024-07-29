@@ -1,6 +1,6 @@
 import streamlit as st
 import bancodedados.database as db
-import models.clientes as clientes
+import models.Clientes as clientes
 
 
 def incluir(cliente):
@@ -40,14 +40,13 @@ def alterar(cliente):
         connect = db.get_connection()
         cursor = connect.cursor()
         cursor.execute("""UPDATE clientes
-                    SET (cliNome = ?,
+                    SET cliNome = ?,
                     cliIdade = ?,
-                    cliProfissao = ?)
+                    cliProfissao = ?
                     WHERE id = ?
-                    VALUES (?, ?, ?, ?)""", dados)
+                    """, dados)
         connect.commit()
         cursor.close()
-        print('alterando')
     except Exception as e:
         print(f"erro ao alterar:{e}")
 

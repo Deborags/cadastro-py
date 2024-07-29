@@ -30,5 +30,4 @@ def listarClientes():
                 st.rerun()
 
             if on_click_alterar:
-                st.query_params.id = [item.id]
-                editCliente.editarCliente()
+                editCliente.editarCliente(item.id)
