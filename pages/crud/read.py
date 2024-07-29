@@ -1,7 +1,6 @@
 import streamlit as st
 import controllers.clienteController as clienteController
 import pages.crud.edit as editCliente
-# import pages.crud.create as createCliente
 
 
 def listarClientes():
@@ -22,13 +21,13 @@ def listarClientes():
             button_excluir = col5.empty()
             on_click_excluir = button_excluir.button(
                 'Excluir', 'btnExcluir' + str(item.id))
-            button_alterar = col6.empty()
-            on_click_alterar = button_alterar.button(
-                'Alterar', 'btnAlterar' + str(item.id))
+            button_space_alterar = col6.empty()
+            on_click_editar = button_space_alterar.button(
+                'Editar', 'btnAlterar' + str(item.id))
             if on_click_excluir:
                 clienteController.excluir(item.id)
                 st.rerun()
 
-            if on_click_alterar:
+            if on_click_editar:
                 st.query_params.id = [item.id]
                 editCliente.editarCliente()

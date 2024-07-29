@@ -6,13 +6,13 @@ import models.clientes as clientes
 def editarCliente():
     idAlteracao = st.query_params
     idAlteracao = idAlteracao.get("id")
-    global clienteRecuperado
     clienteRecuperado = None
     clienteRecuperado = clienteController.selecionar_id(idAlteracao)
+
     if clienteRecuperado is not None:
         st.query_params.id = [clienteRecuperado.id]
-        # st.query_params.clear()
-        with st.form(key="alterar_cliente"):
+        st.query_params.clear()
+        with st.form(key="include_cliente"):
             listOccupation = ["Desenvolvedor", "Músico",
                               "Designer", "Professor"]
             st.text("Alterando cliente")
@@ -24,15 +24,14 @@ def editarCliente():
                 "Selecione sua profissão", options=listOccupation,
                 index=listOccupation.index
                 (clienteRecuperado.profissao))
-            # input_button_submit = st.form_submit_button(
-            #     label="Alterar", on_click=jose())
+            submit = st.form_submit_button("Atualizar")
+            print("dentro do form")
 
-            def jose():
+# ####### if que não entra ao clicar no botão editar ########
+            if submit:
+                print("dentro do button")
+                # if idAlteracao is None:
                 clienteController.alterar(clientes.Clientes(
                     clienteRecuperado, input_name, input_idade,
                     input_ocupation))
                 st.success("Cliente alterado com sucesso!")
-                print("fora", clienteRecuperado)
-            print("qualquer coisa")
-            input_button_submit = st.form_submit_button(
-                label="Alterar", on_click=jose())

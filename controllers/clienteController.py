@@ -36,7 +36,6 @@ def selecionar_id(id):
 
 def alterar(cliente):
     try:
-        dados = [cliente.nome, cliente.idade, cliente.profissao, cliente.id]
         connect = db.get_connection()
         cursor = connect.cursor()
         cursor.execute("""UPDATE clientes
@@ -44,7 +43,8 @@ def alterar(cliente):
                     cliIdade = ?,
                     cliProfissao = ?)
                     WHERE id = ?
-                    VALUES (?, ?, ?, ?)""", dados)
+                    """, cliente.nome, cliente.idade, cliente.profissao,
+                       cliente.id)
         connect.commit()
         cursor.close()
         print('alterando')

@@ -7,12 +7,7 @@ import pages.crud.edit as editCliente
 def cadastrar():
     idAlteracao = st.query_params
     idAlteracao = idAlteracao.get("id")
-    # clienteRecuperado = None
-    # clienteRecuperado = clienteController.selecionar_id(idAlteracao)
     if idAlteracao is None:
-        # idAlteracao = idAlteracao.get("id")
-        # clienteRecuperado = clienteController.selecionar_id(idAlteracao)
-        # st.query_params.id = [clienteRecuperado.id]
         st.write(idAlteracao)
         st.title("Tela de cadastro")
         with st.form(key="include_cliente"):
