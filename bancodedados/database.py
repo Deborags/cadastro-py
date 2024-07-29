@@ -1,3 +1,6 @@
+"""
+Connects to a SQL database using pyodbc
+"""
 import pyodbc
 
 SERVER = 'DESKTOP-CT7COQP\\MNDEBORA'

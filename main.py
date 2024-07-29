@@ -12,8 +12,8 @@ if page_cliente == "Home":
             "interagir com o nosso projeto")
 
 if page_cliente == "Incluir":
+    st.query_params.clear()
     createCliente.cadastrar()
 
 if page_cliente == "Consultar":
-    st.query_params.clear()
     readCliente.listarClientes()

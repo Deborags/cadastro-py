@@ -1,7 +1,7 @@
 import streamlit as st
 import controllers.clienteController as clienteController
 import pages.crud.edit as editCliente
-import pages.crud.create as createCliente
+# import pages.crud.create as createCliente
 
 
 def listarClientes():
@@ -31,6 +31,4 @@ def listarClientes():
 
             if on_click_alterar:
                 st.query_params.id = [item.id]
-                editCliente.alterar()
-    else:
-        createCliente.cadastrar()
+                editCliente.editarCliente()

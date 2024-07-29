@@ -1,11 +1,11 @@
 import streamlit as st
-import services.database as db
-import models.Clientes as Clientes
+import bancodedados.database as db
+import models.clientes as clientes
 
 
 def incluir(cliente):
     try:
-        dados = (cliente.nome, cliente.idade, cliente.profissao)
+        dados = [cliente.nome, cliente.idade, cliente.profissao]
         connect = db.get_connection()
         cursor = connect.cursor()
         cursor.execute("""
@@ -20,6 +20,36 @@ def incluir(cliente):
         print("Cliente incluído!")
     except Exception as e:
         print(f"Erro ao incluir cliente: {e}")
+
+
+def selecionar_id(id):
+    connect = db.get_connection()
+    cursor = connect.cursor()
+    cursor.execute("""SELECT * FROM clientes WHERE id = ?""", id)
+    costumerList = []
+
+    for row in cursor.fetchall():
+        costumerList.append(clientes.Clientes(row[0], row[1], row[2], row[3]))
+    cursor.close()
+    return costumerList[0]
+
+
+def alterar(cliente):
+    try:
+        dados = [cliente.nome, cliente.idade, cliente.profissao, cliente.id]
+        connect = db.get_connection()
+        cursor = connect.cursor()
+        cursor.execute("""UPDATE clientes
+                    SET (cliNome = ?,
+                    cliIdade = ?,
+                    cliProfissao = ?)
+                    WHERE id = ?
+                    VALUES (?, ?, ?, ?)""", dados)
+        connect.commit()
+        cursor.close()
+        print('alterando')
+    except Exception as e:
+        print(f"erro ao alterar:{e}")
 
 
 def excluir(id):
@@ -43,6 +73,6 @@ def selecionar_todos():
     costumerList = []
 
     for row in cursor.fetchall():
-        costumerList.append(Clientes.Clientes(row[0], row[1], row[2], row[3]))
+        costumerList.append(clientes.Clientes(row[0], row[1], row[2], row[3]))
     cursor.close()
     return costumerList
